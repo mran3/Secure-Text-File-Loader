@@ -20,6 +20,10 @@ function createWindow () {
 }
 
 app.whenReady().then(createWindow)
+app.on(
+  "window-all-closed",
+  () => process.platform !== "darwin" && app.quit()
+);
 
 ipcMain.handle('read-file', async (ipcEvent, path) => {
     if (path != undefined) {
